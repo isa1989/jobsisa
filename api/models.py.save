@@ -1,0 +1,72 @@
+from django.db import models
+from django.utils.text import slugify
+
+# Create your models here.
+
+class Contact(models.Model):
+    number = models.IntegerField()
+    mail = models.CharField(max_length=100)
+    adress = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.mail
+
+
+
+class SosialLink(models.Model):
+    name = models.CharField(max_length=100)
+    url = models.URLField(max_length=100)
+
+ def __str__(self):
+        return self.mail def __str__(self):
+        return self.mail def __str__(self):
+        return self.mail
+class JobType(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class JobCategory(models.Model):
+    name = models.CharField(max_length=100)
+
+
+    def __str__(self):
+        return self.name
+
+
+		
+class Jobs(models.Model):
+    sosialid = models.ForeignKey(SosialLink, on_delete=models.CASCADE)
+    jobtype = models.ForeignKey(JobType, on_delete=models.CASCADE)
+    jobcategory = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='images/')
+    companyname = models.CharField(max_length=100)
+    jobname = models.CharField(max_length=100)
+    jobdesj = models.CharField(max_length=100)
+    position = models.IntegerField(default=0)
+    experience = models.CharField(max_length=100)
+    adress = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    website = models.URLField(max_length=100)
+    number = models.CharField(max_length=100)
+    salary = models.CharField(max_length=100)
+    jobresponsibilities = models.CharField(max_length=100)
+    jobskillrequirement = models.CharField(max_length=100)
+    endtime = models.DateTimeField()
+    jobsqualification = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.jobname			
+
+def images(instance, filename):
+    filename = instance.slug + '.' + filename.split('.')[1]
+    return "{0}/{1}".format(instance.slug, filname)
+
+
+class DropMail(models.Model):
+    adress = models.CharField(max_length=100)
+    mail = models.CharField(max_length=100)
+    number = models.IntegerField()
+
+    def __str__(self):
+        return self.mail
+
